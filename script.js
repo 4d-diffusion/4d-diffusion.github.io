@@ -37,7 +37,8 @@ const addCarouselLoopIllusion = carouselEl => {
     w.classList.add('illusory');
     carouselWindowEl.insertBefore(w, carouselWindowEl.firstChild);
     remainderLeftX -= getWidthIncludingMargin(w);
-    i--;
+    // Modulus in js doesn't work with negative numbers.
+    i = i === 0 ? windows.length - 1 : i - 1;
     console.log('addCarouselLoopIllusion: added left');
   }
 
@@ -48,7 +49,7 @@ const addCarouselLoopIllusion = carouselEl => {
     w.classList.add('illusory');
     carouselWindowEl.appendChild(w);
     remainderRightX -= getWidthIncludingMargin(w);
-    i++;
+    i = (i + 1) % windows.length;
     console.log('addCarouselLoopIllusion: added right');
   }
 };
@@ -56,7 +57,6 @@ const addCarouselLoopIllusion = carouselEl => {
 
 const getCarouselXs = carouselEl => {
   const allWindows = getCarouselWindows(carouselEl, true);
-  // TODO(watsondaniel): check if this is ok
   const finalOffset =
       (window.innerWidth - allWindows[1].clientWidth) / 2;
   console.log('getCarouselXs: finalOffset', finalOffset);
@@ -95,8 +95,6 @@ const getCurrentCarouselWindow = carouselEl => {
     nRightIllusory++;
     i--;
   }
-  console.log('getCurrentCarouselWindow: nLeftIllusory', nLeftIllusory);
-  console.log('getCurrentCarouselWindow: nRightIllusory', nRightIllusory);
   const nReal = allWindows.length - nLeftIllusory - nRightIllusory;
 
   // TODO(watsondaniel): handle negative differences?
@@ -110,53 +108,49 @@ const getCurrentCarouselWindow = carouselEl => {
     index = index - nLeftIllusory;
   }
 
-  let x = xs[nLeftIllusory + index];
-
-  console.log('getCurrentCarouselWindow: scrollLeft', scrollLeft);
-  console.log('getCurrentCarouselWindow: xs', xs);
-  console.log('getCurrentCarouselWindow: distances', distances);
+  const x = xs[nLeftIllusory + index];
   return {index, x};
 };
 
 
-const loadCarouselWindowMedia = (windowEl, groupStr) => {
-  const src = windowEl.dataset[groupStr];
-  const srcEl = windowEl.getElementsByClassName('dynamic')[0];
-  if (srcEl !== null && srcEl !== undefined &&
-      srcEl.getAttribute('src') !== src) {
-    srcEl.setAttribute('src', src);
-  }
-  if (srcEl.parentNode.tagName === 'VIDEO') {
-    srcEl.parentNode.load();
-    srcEl.parentNode.play();
-  }
-};
+// const loadCarouselWindowMedia = (windowEl, groupStr) => {
+//   const src = windowEl.dataset[groupStr];
+//   const srcEl = windowEl.getElementsByClassName('dynamic')[0];
+//   if (srcEl !== null && srcEl !== undefined &&
+//       srcEl.getAttribute('src') !== src) {
+//     srcEl.setAttribute('src', src);
+//   }
+//   if (srcEl.parentNode.tagName === 'VIDEO') {
+//     srcEl.parentNode.load();
+//     srcEl.parentNode.play();
+//   }
+// };
 
 
-const activateCarousel = (carouselEl, windowIndex, groupStr) => {
-  // TODO(watsondaniel): check if this is ok
-  const windows = getCarouselWindows(carouselEl);
+// const activateCarousel = (carouselEl, windowIndex, groupStr) => {
+//   // TODO(watsondaniel): check if this is ok
+//   const windows = getCarouselWindows(carouselEl);
 
-  // First adjust the scrollLeft to the specified or closest window.
-  if (windowIndex === null) {
-    windowIndex = getCurrentCarouselWindow(carouselEl).index;
-  } else {
-    windowIndex++;
-  }
-  const carouselWindowEl =
-      carouselEl.getElementsByClassName('carousel-elements')[0];
-  carouselWindowEl.scrollLeft = getCarouselXs(carouselEl)[windowIndex];
+//   // First adjust the scrollLeft to the specified or closest window.
+//   if (windowIndex === null) {
+//     windowIndex = getCurrentCarouselWindow(carouselEl).index;
+//   } else {
+//     windowIndex++;
+//   }
+//   const carouselWindowEl =
+//       carouselEl.getElementsByClassName('carousel-elements')[0];
+//   carouselWindowEl.scrollLeft = getCarouselXs(carouselEl)[windowIndex];
 
-  // TODO(watsondaniel): don't return; find current groupStr instead!
-  if (groupStr === null) {
-    return;
-  }
-  loadCarouselWindowMedia(windows[windowIndex], groupStr);
-  loadCarouselWindowMedia(
-      windows[(windowIndex + 1) % windows.length], groupStr);
-  loadCarouselWindowMedia(
-      windows[(windowIndex - 1) % windows.length], groupStr);
-};
+//   // TODO(watsondaniel): don't return; find current groupStr instead!
+//   if (groupStr === null) {
+//     return;
+//   }
+//   loadCarouselWindowMedia(windows[windowIndex], groupStr);
+//   loadCarouselWindowMedia(
+//       windows[(windowIndex + 1) % windows.length], groupStr);
+//   loadCarouselWindowMedia(
+//       windows[(windowIndex - 1) % windows.length], groupStr);
+// };
 
 
 // === Global functions accessed by the HTML. === //
@@ -186,42 +180,41 @@ function scrollCarousel(carouselWindowsEl) {
 }
 
 function moveCarousel(carouselEl, increment) {
-  // TODO(watsondaniel): check if this is ok
-  const n = getCarouselWindows(carouselEl).length;
-  const i = getCurrentCarouselWindow(carouselEl).index - 1;
-  activateCarousel(carouselEl, (i + increment) % n, null);
+  // const n = getCarouselWindows(carouselEl, false).length;
+  // const i = getCurrentCarouselWindow(carouselEl).index;
+  // activateCarousel(carouselEl, (i + increment) % n, null);
 }
 
-const moveClosestCarousel = increment => {
-  const carousels = [].slice.call(document.getElementsByClassName('carousel'));
-  const hs = carousels.map(el => el.clientHeight);
-  // NOTE: these are already offset by window.scrollY. Adding it back will make
-  // the result constant.
-  const yStart = carousels.map(el => el.getBoundingClientRect().top);
-  const yEnd = yStart.map((y, i) => y + hs[i]);
-  const yMax = window.innerHeight;
+// const moveClosestCarousel = increment => {
+//   const carousels = [].slice.call(document.getElementsByClassName('carousel'));
+//   const hs = carousels.map(el => el.clientHeight);
+//   // NOTE: these are already offset by window.scrollY. Adding it back will make
+//   // the result constant.
+//   const yStart = carousels.map(el => el.getBoundingClientRect().top);
+//   const yEnd = yStart.map((y, i) => y + hs[i]);
+//   const yMax = window.innerHeight;
 
-  const candidates = [];
-  for (let i = 0; i < carousels.length; i++) {
-    if (yStart[i] < yMax && yEnd[i] > 0) {
-      candidates.push(i);
-    }
-  }
+//   const candidates = [];
+//   for (let i = 0; i < carousels.length; i++) {
+//     if (yStart[i] < yMax && yEnd[i] > 0) {
+//       candidates.push(i);
+//     }
+//   }
 
-  const candidateCoverage = candidates.map(
-      i => ((Math.min(yMax, yEnd[i]) - Math.max(0, yStart[i])) / hs[i]));
-  const index = candidateCoverage.indexOf(Math.max(...candidateCoverage));
-  moveCarousel(carousels[index], increment);
-};
+//   const candidateCoverage = candidates.map(
+//       i => ((Math.min(yMax, yEnd[i]) - Math.max(0, yStart[i])) / hs[i]));
+//   const index = candidateCoverage.indexOf(Math.max(...candidateCoverage));
+//   moveCarousel(carousels[index], increment);
+// };
 
-function changeCarouselGroup(toggleEl, groupStr) {
-  const carouselEl = toggleEl.parentNode.parentNode;
-  for (anyToggleEl of toggleEl.parentNode.children) {
-    anyToggleEl.classList.remove('active');
-  }
-  toggleEl.classList.add('active');
-  activateCarousel(carouselEl, null, groupStr);
-}
+// function changeCarouselGroup(toggleEl, groupStr) {
+//   const carouselEl = toggleEl.parentNode.parentNode;
+//   for (anyToggleEl of toggleEl.parentNode.children) {
+//     anyToggleEl.classList.remove('active');
+//   }
+//   toggleEl.classList.add('active');
+//   activateCarousel(carouselEl, null, groupStr);
+// }
 
 
 // === Document ready. === //
@@ -241,11 +234,8 @@ function changeCarouselGroup(toggleEl, groupStr) {
   // });
 
   // Activate all the carousels.
-  console.log('all carousels:', document.getElementsByClassName('carousel'));
   for (let carouselEl of document.getElementsByClassName('carousel')) {
-    console.log('calling addCarouselLoopIllusion', carouselEl);
     addCarouselLoopIllusion(carouselEl);
-    // TODO(watsondaniel): check if this is ok
     // const groupStr = Object.keys(getCarouselWindows(carouselEl)[0].dataset)[0];
     // activateCarousel(carouselEl, 0, groupStr);
   }

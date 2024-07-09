@@ -83,7 +83,7 @@
 
     <div class="container center">
       <p>
-        Given a single image, 4DiM generates images for different 3D camera trajectories. These input images are from our evaluation datasets, other public datasets, the internet, or from text-to-image models.
+        Given a single image, 4DiM generates images for different 3D camera trajectories. The input images below are from our evaluation set, other public datasets, the internet, or from a text-to-image model.
       </p>
     </div>
 
@@ -139,9 +139,9 @@
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano2_in.gif" alt="" />
+              <img src="./samples/i23d/pano5_in.gif" alt="" />
               <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano2.gif" alt="" />
+              <img src="./samples/i23d/pano5.gif" alt="" />
             </div>
           </div>
           <div class="carousel-element">
@@ -196,7 +196,7 @@
 
     <div class="container center">
       <p>
-        To achieve the best results with arbitrary inputs, we co-train with large amounts of unposed video. This expands the capabilities of 4DiM, allowing video from a single image.
+        To achieve the best results with arbitrary inputs, we co-train with large amounts of unposed video. This expands 4DiM's capabilities to also control time. Here we show videos generated from 2 input images.
       </p>
     </div>
 
@@ -215,35 +215,61 @@
         <br />
         <div class="carousel-elements" onscroll="scrollCarousel(this);">
           <div class="carousel-element">
-            <img src="./samples/i2v/video_1.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/1_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/1.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_2.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/2_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/2.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_3.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/3_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/3.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_4.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/4_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/4.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_5.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/5_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/5.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_6.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/6_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/6.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_7.gif" alt="">
-          </div>
-          <!-- <div class="carousel-element">
-            <img src="./samples/i2v/video_8.gif" alt="">
-          </div>
-          <div class="carousel-element">
-            <img src="./samples/i2v/video_9.gif" alt="">
+            <div class="input-output">
+              <img src="./samples/i2v/7_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/7.gif" alt="" />
+            </div>
           </div>
           <div class="carousel-element">
-            <img src="./samples/i2v/video_10.gif" alt="">
-          </div> -->
+            <div class="input-output">
+              <img src="./samples/i2v/8_in.gif" alt="" />
+              <span class="arrow">&rarr;</span>
+              <img src="./samples/i2v/8.gif" alt="" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -258,20 +284,56 @@
         More applications of 4DiM
       </h2>
       <br />
-
-      <p>4DiM can move time both forward and backward from a single image.</p>
-      <br>
-      <img src="./samples/fwd_bwd/video_1.gif" alt="">
-
-      <br />
-      <br />
-      <br />
-
-      <p>
-        Video to video translation: here we feed 8-frame videos to 4DiM and ask it to render new videos from other viewpoints.
-      </p>
-      <br />
+      <p>4DiM can move time both forward and backward.</p>
     </div>
+
+    <br>
+
+    <div class="center">
+      <div class="input-output">
+        <img src="./samples/fwd_bwd/video_1_in.gif" alt="" />
+        <span class="arrow">&rarr;</span>
+        <img src="./samples/fwd_bwd/video_1.gif" alt="" />
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="container center">
+      <p>
+        Video interpolation: 4DiM can create videos given discontinuous input images. Here we input the start and end image and 4DiM creates the intermediate frames.
+      </p>
+    </div>
+
+    <br>
+
+    <div class="center">
+      <div class="input-output">
+        <img src="./samples/interp/4_in.gif" alt="" />
+        <span class="arrow">&rarr;</span>
+        <img src="./samples/interp/4.gif" alt="" />
+      </div>
+      <br>
+      <div class="input-output">
+        <img src="./samples/interp/1_in.gif" alt="" />
+        <span class="arrow">&rarr;</span>
+        <img src="./samples/interp/1.gif" alt="" />
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="container center">
+      <p>
+        Video to video translation: below we input 8-frame videos to 4DiM to re-create them with different cameras.
+      </p>
+    </div>
+
+    <br>
 
     <!-- <div class="center">
       <div class="carousel">
@@ -356,7 +418,7 @@
 
     <div class="container center">
       <p>
-        4DiM can create 360° panoramas without the exposure artifacts found in traditional (homography-based) stitching methods. Here we show a comparison given six input images.
+        4DiM can create 360° panoramas without the exposure artifacts found in traditional stitching methods. Here we show a comparison of 4DiM v.s. homography with gamma adjustment, respectively, given six input images.
       </p>
       <br>
       <div class="input-output">
@@ -364,11 +426,11 @@
         <span class="arrow" style="visibility: hidden;">&rarr;</span>
         <img src="./samples/pano/tgt.gif" alt="" />
       </div>
-      <br>
+      <!-- <br>
       <br>
       <span class="caption">
       <span style="font-weight: bold">Left: 4DiM</span>. Right: homography + exposure adjustment.
-      </span>
+      </span> -->
 
       <br />
       <br />
@@ -377,8 +439,6 @@
         4DiM can generate 360° camera rotation given a single image, which is extremely challenging. The model still suffers from some loss of detail in this case.
       </p>
     </div>
-
-    <br />
 
     <div class="center">
       <div class="carousel">
@@ -416,9 +476,9 @@
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano5_in.gif" alt="" />
+              <img src="./samples/i23d/pano2_in.gif" alt="" />
               <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano5.gif" alt="" />
+              <img src="./samples/i23d/pano2.gif" alt="" />
             </div>
           </div>
           <div class="carousel-element">
@@ -548,7 +608,7 @@
     <hr />
     <br /> -->
 
-    <div class="container center">
+    <!-- <div class="container center">
       <h2>Technical innovations</h2>
     </div>
 
@@ -579,12 +639,12 @@
       <span class="caption">
       <span style="font-weight: bold">Left: 4DiM</span>. Middle: 4DiM trained on uncalibrated data. Right: real data.
       </span>
-    </div>
+    </div> -->
 
-    <br />
+    <!-- <br />
     <br />
     <hr />
-    <br />
+    <br /> -->
 
     <div class="container center">
       <h2>Thank you!</h2>
