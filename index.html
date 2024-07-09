@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>4DiM</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container center">
+      <br />
+      <h1>4DiM: Controlling Space and Time with Diffusion Models</h1>
+      <b class="center"
+        >Daniel Watson*, Saurabh Saxena*, Lala Li*, Andrea Tagliasacchi, David Fleet</b
+      >
+      <br />
+      <br />
+      <span class="center">Google DeepMind</span>
+      <br />
+      <i>*equal contribution</i>
+      <br />
+      <br />
+      <!-- TODO(watsondaniel): link to arxiv -->
+      <a href="javascript:void(0);" class="arxiv-button"
+        ><button><i class="ai ai-arxiv"></i> <span>Coming Soon</span></button></a
+      >
+    </div>
+
+    <br />
+    <br />
+
+    <div class="banner center">
+      <!-- <div class="main-video-placeholder center">TODO(all): video</div> -->
+      <img src="./samples/banner/table.gif" alt="">
+      <img src="./samples/banner/fern.gif" alt="">
+      <img src="./samples/banner/room.gif" alt="">
+      <img src="./samples/banner/slide.gif" alt="">
+      <br>
+      <br>
+      <span class="caption">
+      Samples from our model, 4DiM, all generated from a single input image.
+      </span>
+    </div>
+
+    <br />
+
+    <div class="container abstract">
+      <p>
+        We present 4DiM, a cascaded diffusion model for 4D novel view synthesis (NVS) of scenes,
+        conditioned on one or more images and a set of camera poses and timestamps for the known and
+        unknown views. To overcome the challenges due to limited availability of 4D training data,
+        we advocate joint training on 3D (poses only), 4D (pose+time) and video (time only) data and
+        propose a new architecture that enables the same. We further propose calibrating SfM posed
+        data using monocular metric depth estimators for metric scale camera control. We introduce
+        new metrics to enrich and overcome shortcomings of current evaluation schemes and achieve
+        state-of-the-art results in both fidelity and pose control compared to existing diffusion
+        models for 3D NVS with the additional capability of handling temporal dynamics. We also
+        showcase zero-shot applications, including improved panorama stitching and rendering
+        space-time trajectories from novel viewpoints.
+      </p>
+    </div>
+  </body>
+</html>

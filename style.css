@@ -1,0 +1,140 @@
+html,body {
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+}
+
+h1,h2,h3,h4,h5,h6,p,span,b,i,hr {
+  font-family: 'Google Sans', sans-serif;
+  color: #fff;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: normal;
+}
+a {
+  color: #fff;
+}
+
+.caption {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.arxiv-button {
+  text-decoration: none;
+}
+.arxiv-button button {
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  font-family: 'Google Sans', sans-serif;
+  color: #fff;
+  background-color: #000;
+  font-size: 1.25rem;
+  padding: 0 0.5rem;
+}
+.arxiv-button button:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+.arxiv-button span {
+  font-size: 1rem;
+  position: relative;
+  top: -2px;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  max-width: 50rem;
+}
+
+.center {
+  text-align: center;
+}
+
+.main-video-placeholder {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  max-width: 50rem;
+  aspect-ratio: 16/9;
+  background-color: #aaa;
+}
+
+.abstract {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: min(80%, 40rem);
+}
+
+/* This is needed to avoid overflow of arrows. */
+.carousel {
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel span {
+  color: #ccc;
+}
+.carousel span.active {
+  color: #fff;
+}
+
+.carousel-elements {
+  overflow: scroll;
+  display: flex;
+}
+
+.carousel-element {
+  margin-left: auto;
+  margin-right: auto;
+  /* width: round(90vw, 1px); */
+  max-width: round(min(90vw, 50rem), 1px);
+  /* aspect-ratio: 16/9; */
+  /* background-color: #aaa; */
+  /* min-width: round(33vw, 1px); */
+  flex-shrink: 0;
+  margin-right: round(8rem, 1px);
+}
+
+.carousel-group-span:hover {
+  cursor: pointer;
+}
+
+.carousel-arrow {
+  font-size: 4rem;
+  position: absolute;
+  margin-top: 5rem;
+  overflow: hidden;
+}
+.carousel-arrow.left {
+  float: left;
+  left: -2.25rem;
+}
+.carousel-arrow.right {
+  float: right;
+  right: -2.25rem;
+}
+
+.input-output {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.input-output video,.input-output img {
+  /* Do not show videos above their natural resolution */
+  max-width: 256px;
+  width: 40%;
+}
+.input-output .arrow {
+  font-size: 2rem;
+  margin: auto 1rem;
+}
+
+.input-output-target img,.input-output-target video {
+  max-width: min(256px, 28vw);
+}
+.input-output-target:last-child {
+  margin-right: 0;
+}
