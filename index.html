@@ -18,31 +18,24 @@
   <body>
     <div class="container center">
       <br />
-      <h1>4DiM: Controlling Space and Time with Diffusion Models</h1>
-      <b class="center"
-        >Daniel Watson*, Saurabh Saxena*, Lala Li*, Andrea Tagliasacchi, David Fleet</b
-      >
-      <br />
-      <br />
-      <span class="center">Google DeepMind</span>
-      <br />
-      <i>*equal contribution</i>
-      <br />
-      <br />
-      <a href="http://arxiv.org/abs/2407.07860" class="arxiv-button"
-        ><button><i class="ai ai-arxiv"></i> <span>Read paper</span></button></a
-      >
+      <h1>Controlling Space and Time with Diffusion Models</h1>
+      <h3 class="center">Daniel Watson*, Saurabh Saxena*, Lala Li*, Andrea Tagliasacchi, David Fleet</h3>
+      <b>Google DeepMind</b>
+      <br>
+      <b>*equal contribution</b>
+      <br>
+      <br>
+      <a href="http://arxiv.org/abs/2407.07860" class="arxiv-button"><button><i class="ai ai-arxiv" style="color: #fff"></i> <span style="color: #fff">Read paper</span></button></a>
     </div>
 
     <br />
     <br />
 
     <div class="banner center">
-      <!-- <div class="main-video-placeholder center">TODO(all): video</div> -->
-      <img src="./samples/banner/table.gif" alt="">
-      <img src="./samples/banner/fern.gif" alt="">
-      <img src="./samples/banner/room.gif" alt="">
-      <img src="./samples/banner/slide.gif" alt="">
+      <img src="./new_samples/banner/table.gif" alt="">
+      <img src="./new_samples/banner/fern.gif" alt="">
+      <img src="./new_samples/banner/room.gif" alt="">
+      <img src="./new_samples/banner/slide.gif" alt="">
       <br>
       <br>
       <span class="caption">
@@ -53,28 +46,17 @@
     <br />
 
     <div class="container abstract">
-      <p>
-        We present 4DiM, a cascaded diffusion model for 4D novel view synthesis (NVS) of scenes,
-        conditioned on one or more images and a set of camera poses and timestamps for the known and
-        unknown views. To overcome the challenges due to limited availability of 4D training data,
-        we advocate joint training on 3D (poses only), 4D (pose+time) and video (time only) data and
-        propose a new architecture that enables the same. We further propose calibrating SfM posed
-        data using monocular metric depth estimators for metric scale camera control. We introduce
-        new metrics to enrich and overcome shortcomings of current evaluation schemes and achieve
-        state-of-the-art results in both fidelity and pose control compared to existing diffusion
-        models for 3D NVS with the additional capability of handling temporal dynamics. We also
-        showcase zero-shot applications, including improved panorama stitching and rendering
-        space-time trajectories from novel viewpoints.
+      <p style="text-align: justify;">
+        We present 4DiM, a cascaded diffusion model for 4D novel view synthesis (NVS), supporting generation with arbitrary camera trajectories and timestamps, in natural scenes, conditioned on one or more images. With a novel architecture and sampling procedure, we enable training on a mixture of 3D (with camera pose), 4D (pose+time) and video (time but no pose) data, which greatly improves generalization to unseen images and camera pose trajectories over prior works that focus on limited domains (e.g., object centric). 4DiM is the first-ever NVS method with intuitive metric-scale camera pose control enabled by our novel calibration pipeline for structure-from-motion-posed data. Experiments demonstrate that 4DiM outperforms prior 3D NVS models both in terms of image fidelity and pose alignment, while also enabling the generation of scene dynamics. 4DiM provides a general framework for a variety of tasks including single-image-to-3D, two-image-to-video (interpolation and extrapolation), and pose-conditioned video-to-video translation, which we illustrate qualitatively on a variety of scenes.
       </p>
     </div>
 
     <br />
-    <hr />
     <br />
 
-    <div class="container center">
+    <div class="section-header center">
       <h2>
-        4DiM takes one or more images as input and outputs images at the specified time and camera coordinates.
+        Novel views given a single input image
       </h2>
     </div>
 
@@ -82,7 +64,7 @@
 
     <div class="container center">
       <p>
-        Given a single image, 4DiM generates images for different 3D camera trajectories. The input images below are from our evaluation set, other public datasets, the internet, or from a text-to-image model.
+        Below we show 4DiM samples on unseen <a href="https://google.github.io/realestate10k/">RealEstate10K</a> input images:
       </p>
     </div>
 
@@ -91,101 +73,65 @@
     <div class="center">
       <div class="carousel">
         <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
-        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
-        <br />
         <div class="carousel-elements" onscroll="scrollCarousel(this);">
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/re10k_1_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/re10k_1.gif" alt="" />
+              <img src="./new_samples/3d/re10k1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k1_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/arb5_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb5.gif" alt="" />
+              <img src="./new_samples/3d/re10k2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/3d/re10k3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k3_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/re10k_2_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/re10k_2.gif" alt="" />
+              <img src="./new_samples/3d/re10k4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k4_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/arb4_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb4.gif" alt="" />
+              <img src="./new_samples/3d/re10k5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k5_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano1_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano1.gif" alt="" />
+              <img src="./new_samples/3d/re10k6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k6_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/re10k_3_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/re10k_3.gif" alt="" />
+              <img src="./new_samples/3d/re10k7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k7_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano5_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano5.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb1_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb1.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb2_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb2.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb3_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb3.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb7_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb7.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb8_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb8.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb9_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb9.gif" alt="" />
+              <img src="./new_samples/3d/re10k8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/re10k8_out.gif " alt="" />
             </div>
           </div>
         </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
       </div>
     </div>
 
@@ -195,7 +141,7 @@
 
     <div class="container center">
       <p>
-        To achieve the best results with arbitrary inputs, we co-train with large amounts of unposed video. This expands 4DiM's capabilities to also control time. Here we show videos generated from 2 input images.
+        Below we show zero-shot 4DiM samples on the <a href="https://bmild.github.io/llff/">Local Light Field Fusion</a> (LLFF) dataset:
       </p>
     </div>
 
@@ -204,7 +150,179 @@
     <div class="center">
       <div class="carousel">
         <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
+        <div class="carousel-elements" onscroll="scrollCarousel(this);">
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff3_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff5_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff6_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff7_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/llff8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/llff8_out.gif " alt="" />
+            </div>
+          </div>
+        </div>
         <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="container center">
+      <p>
+        Below we show zero-shot 4DiM samples on <u>arbitrary images</u> gathered from the internet:
+      </p>
+    </div>
+
+    <br />
+
+    <div class="center">
+      <div class="carousel">
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
+        <div class="carousel-elements" onscroll="scrollCarousel(this);">
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb3_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb5_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb6_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb7_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/3d/arb8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/3d/arb8_out.gif " alt="" />
+            </div>
+          </div>
+        </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
+      </div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+    <div class="section-header center">
+      <h2>
+        Video from two input images
+      </h2>
+    </div>
+
+    <br />
+
+    <div class="container center">
+      <p>
+        Below we show 4DiM samples on <u>video interpolation</u>, i.e., given the first and the last frame, 4DiM generates a video in between them. There is no camera pose input.
+      </p>
+    </div>
+
+
+    <div class="center">
+      <div class="carousel">
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
         <!-- <div class="container">
           <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
           <span>&#x2022;</span>
@@ -215,371 +333,618 @@
         <div class="carousel-elements" onscroll="scrollCarousel(this);">
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/1_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/1.gif" alt="" />
+              <img src="./new_samples/interpolate/davis1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/davis1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/interpolate/davis2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/davis2_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/2_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/2.gif" alt="" />
+              <img src="./new_samples/interpolate/davis3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/davis3_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/3_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/3.gif" alt="" />
+              <img src="./new_samples/interpolate/davis4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/davis4_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/4_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/4.gif" alt="" />
+              <img src="./new_samples/interpolate/davis5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/davis5_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/5_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/5.gif" alt="" />
+              <img src="./new_samples/interpolate/blank1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/blank1_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/6_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/6.gif" alt="" />
+              <img src="./new_samples/interpolate/blank2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/blank2_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i2v/7_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/7.gif" alt="" />
-            </div>
-          </div>
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i2v/8_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i2v/8.gif" alt="" />
+              <img src="./new_samples/interpolate/blank3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/interpolate/blank3_out.gif " alt="" />
             </div>
           </div>
         </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
       </div>
-    </div>
-
-    <br />
-    <br />
-    <hr />
-    <br />
-
-    <div class="container center">
-      <h2>
-        More applications of 4DiM
-      </h2>
-      <br />
-      <p>4DiM can move time both forward and backward.</p>
     </div>
 
     <br>
-
-    <div class="center">
-      <div class="input-output">
-        <img src="./samples/fwd_bwd/video_1_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/fwd_bwd/video_1.gif" alt="" />
-      </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
+    <br>
+    <br>
 
     <div class="container center">
       <p>
-        Video interpolation: 4DiM can create videos given discontinuous input images. Here we input the start and end image and 4DiM creates the intermediate frames.
+        Below we show 4DiM samples on <u>video extrapolation</u>, i.e., given the first two frames, 4DiM generates the rest of the video. There is no camera pose input.
       </p>
     </div>
 
-    <br>
+    <br />
 
     <div class="center">
-      <div class="input-output">
-        <img src="./samples/interp/4_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/interp/4.gif" alt="" />
-      </div>
-      <br>
-      <div class="input-output">
-        <img src="./samples/interp/1_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/interp/1.gif" alt="" />
-      </div>
-    </div>
-
-    <br />
-    <br />
-    <br />
-
-    <div class="container center">
-      <p>
-        Video to video translation: below we input 8-frame videos to 4DiM to re-create them with different cameras.
-      </p>
-    </div>
-
-    <br>
-
-    <!-- <div class="center">
       <div class="carousel">
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
+        <br />
         <div class="carousel-elements" onscroll="scrollCarousel(this);">
-          <div class="carousel-element">
+          <div class="carousel-element favorite">
             <div class="input-output">
-              <img src="./samples/v2v/sprinkler_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/v2v/sprinkler.gif" alt="" />
+              <img src="./new_samples/extrapolate/davis1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/davis1_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/v2v/box_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/v2v/box.gif" alt="" />
+              <img src="./new_samples/extrapolate/davis2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/davis2_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/v2v/waves_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/v2v/waves.gif" alt="" />
+              <img src="./new_samples/extrapolate/davis3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/davis3_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/v2v/walk_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/v2v/walk.gif" alt="" />
+              <img src="./new_samples/extrapolate/davis4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/davis4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/extrapolate/blank1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/blank1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/extrapolate/blank2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/blank2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/extrapolate/blank3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/blank3_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/extrapolate/blank4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/extrapolate/blank4_out.gif " alt="" />
             </div>
           </div>
         </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
       </div>
-    </div> -->
-    <div class="center">
-      <div class="input-output">
-        <img src="./samples/v2v/sprinkler_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/v2v/sprinkler.gif" alt="" />
-      </div>
-      <br>
-      <div class="input-output">
-        <img src="./samples/v2v/box_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/v2v/box.gif" alt="" />
-      </div>
-      <!-- <div class="input-output">
-        <img src="./samples/v2v/waves_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/v2v/waves.gif" alt="" />
-      </div> -->
-      <!-- <div class="input-output">
-        <img src="./samples/v2v/walk_in.gif" alt="" />
-        <span class="arrow">&rarr;</span>
-        <img src="./samples/v2v/walk.gif" alt="" />
-      </div> -->
-    </div>
-
-    <br>
-    <br>
-    <br>
-
-    <!-- <div class="container center">
-      <p>We can re-position the camera on input videos to nicer angles via video-to-video. Here we show how to turn side-facing cameras into front-view cameras.</p>
-      <br>
-      <div class="input-output-target">
-        <img src="./samples/sv_reangle/cond.gif" alt="">
-        <img src="./samples/sv_reangle/hyp.gif" alt="" />
-        <img src="./samples/sv_reangle/tgt.gif" alt="" />
-      </div>
-      <br>
-      <br>
-      <span class="caption">
-      Left: input video. Middle: 4DiM output. Right: homography-warped input video.
-      </span>
     </div>
 
     <br />
     <br />
-    <br /> -->
+    <br />
+
+    <div class="section-header center">
+      <h2>
+        Video-to-video translation
+      </h2>
+    </div>
+
+    <br />
 
     <div class="container center">
       <p>
-        4DiM can create 360° panoramas without the exposure artifacts found in traditional stitching methods. Here we show a comparison of 4DiM v.s. homography with gamma adjustment, respectively, given six input images.
-      </p>
-      <br>
-      <div class="input-output">
-        <img src="./samples/pano/hyp.gif" alt="" />
-        <span class="arrow" style="visibility: hidden;">&rarr;</span>
-        <img src="./samples/pano/tgt.gif" alt="" />
-      </div>
-      <!-- <br>
-      <br>
-      <span class="caption">
-      <span style="font-weight: bold">Left: 4DiM</span>. Right: homography + exposure adjustment.
-      </span> -->
-
-      <br />
-      <br />
-      <br />
-      <p>
-        4DiM can generate 360° camera rotation given a single image, which is extremely challenging. The model still suffers from some loss of detail in this case.
+        Below we show zero-shot 4DiM samples on pose-conditional 8-frame video to 8-frame video translation. Here, we focus on <u>camera stabilization</u>, i.e., given a video with a moving camera, 4DiM generates a video with dynamics but sets the camera at a fixed position.
       </p>
     </div>
 
     <div class="center">
       <div class="carousel">
         <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
-        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
-        <br />
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
         <div class="carousel-elements" onscroll="scrollCarousel(this);">
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano3_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano3.gif" alt="" />
+              <img src="./new_samples/traj2cam/1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/1_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/360_2_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_2.gif" alt="" />
+              <img src="./new_samples/traj2cam/2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/2_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano4_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano4.gif" alt="" />
+              <img src="./new_samples/traj2cam/3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/3_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/360_3_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_3.gif" alt="" />
+              <img src="./new_samples/traj2cam/4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/traj2cam/5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/5_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/pano2_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/pano2.gif" alt="" />
+              <img src="./new_samples/traj2cam/6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/6_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/360_4_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_4.gif" alt="" />
+              <img src="./new_samples/traj2cam/7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/7_out.gif " alt="" />
             </div>
           </div>
           <div class="carousel-element">
             <div class="input-output">
-              <img src="./samples/i23d/360_6_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_6.gif" alt="" />
-            </div>
-          </div>
-          <!-- <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/360_5_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_5.gif" alt="" />
-            </div>
-          </div> -->
-          <!-- <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/arb6_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/arb6.gif" alt="" />
-            </div>
-          </div> -->
-          <div class="carousel-element">
-            <div class="input-output">
-              <img src="./samples/i23d/360_1_in.gif" alt="" />
-              <span class="arrow">&rarr;</span>
-              <img src="./samples/i23d/360_1.gif" alt="" />
+              <img src="./new_samples/traj2cam/8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2cam/8_out.gif " alt="" />
             </div>
           </div>
         </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
       </div>
     </div>
 
     <br />
     <br />
+
+    <div class="container center">
+      <p>
+        Here, we focus on <u>novel trajectory generation</u>, i.e., given a video with a moving camera, 4DiM re-generates a video with the camera moving along the newly desired trajectory.
+      </p>
+    </div>
+
+
+    <div class="center">
+      <div class="carousel">
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
+        <br />
+        <div class="carousel-elements" onscroll="scrollCarousel(this);">
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/3_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/5_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/6_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/7_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/traj2traj/8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/traj2traj/8_out.gif " alt="" />
+            </div>
+          </div>
+        </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="section-header center">
+      <h2>
+        More challenging cases
+      </h2>
+    </div>
+
     <br />
 
     <div class="container center">
-      <p>4D from a single image is also possible but is the most challenging case we consider. Here we show some driving examples getting increasingly further away from the input image in space and time:</p>
+      <p>
+        Below we show 4DiM samples on the more challenging case of <u>360° camera rotation</u>:
+      </p>
+    </div>
+
+    <br />
+
+    <div class="center">
+      <div class="carousel">
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <!-- <div class="container">
+          <span class="active" onclick="changeCarouselGroup(this, 'fwd')">wind forward</span>
+          <span>&#x2022;</span>
+          <span onclick="changeCarouselGroup(this, 'bwd')">wind backward</span>
+          <span>&#x2022;</span>
+        </div> -->
+        <div class="carousel-elements" onscroll="scrollCarousel(this);">
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/1_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/1_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/2_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/2_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element favorite">
+            <div class="input-output">
+              <img src="./new_samples/360/3_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/3_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/4_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/4_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/5_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/5_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/6_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/6_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/7_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/7_out.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output">
+              <img src="./new_samples/360/8_in.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./new_samples/360/8_out.gif " alt="" />
+            </div>
+          </div>
+        </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container center">
+      <p>Generating <u>4D from a single image</u> is extremely challenging. Here we show a driving scene where we advance in both space and time from a single starting image:</p>
       <br>
       <!-- <div class="input-output">
         <video autoplay muted loop>
           <source src="./samples/sv/sample2_in.mp4" type="video/mp4" />
         </video>
-        <span class="arrow">&rarr;</span>
+        <span class="arrow">⟶</span>
         <img src="./samples/sv/sample2.gif" alt="" />
       </div> -->
       <div class="input-output-target">
         <video autoplay muted loop>
-          <source src="./samples/sv/sample2_in.mp4" type="video/mp4" />
+          <source src="./new_samples/sv/sample2_in.mp4" type="video/mp4" />
         </video>
-        <img src="./samples/sv/sample2_pose.gif" alt="" />
-        <img src="./samples/sv/sample2.gif" alt="" />
+        <img src="./new_samples/sv/sample2_pose.gif" alt="" />
+        <img src="./new_samples/sv/sample2.gif" alt="" />
+      </div>
+      <div class="image-captions caption">
+        <div>Input</div>
+        <div>Trajectory</div>
+        <div>Output</div>
       </div>
       <br />
-      <!-- <br />
-      <p>One interesting finding is that deep processing of the full camera trajectory is important to achieve the best results. Here we show 4D generation from a single image where the cameras begin with a 180&deg; rotation. 4DiM creates the shape of the street based on the full camera trajectory. This is similar to how for indoor scenes 4DiM creates empty space rather than walls where the camera should be located.</p>
-      <br> -->
+      <br />
+      <p>We show another example of <u>long trajectory generation</u>. Interestingly we find that the trajectory influences the scene content (curved road).</p>
+      <br>
       <div class="input-output-target">
         <video autoplay muted loop>
-          <source src="./samples/sv/sample1_in.mp4" type="video/mp4" />
+          <source src="./new_samples/sv/sample1_in.mp4" type="video/mp4" />
         </video>
-        <img src="./samples/sv/sample1_pose.gif" alt="" />
-        <img src="./samples/sv/sample1.gif" alt="" />
+        <img src="./new_samples/sv/sample1_pose.gif" alt="" />
+        <img src="./new_samples/sv/sample1.gif" alt="" />
+      </div>
+      <div class="image-captions caption">
+        <div>Input</div>
+        <div>Trajectory</div>
+        <div>Output</div>
       </div>
     </div>
 
     <br />
     <br />
-    <hr />
-    <br />
 
-    <!-- <div class="container">
-      <h2>4DiM excels at novel view synthesis compared to previous diffusion models.</h2>
-      <br />
+    <div class="section-header center">
+      <h2>
+        Other applications
+      </h2>
+    </div>
+
+    <br>
+
+    <div class="container center">
       <p>
-        Here we compare 4DiM to
-        <a href="https://yorkucvil.github.io/Photoconsistent-NVS/">PNVS (Yu et al., 2023)</a> and
-        <a href="https://wzhouxiff.github.io/projects/MotionCtrl/">MotionCtrl (Wang et al., 2023)</a
-        >.
+        4DiM can <u>stitch 360° panoramas</u> without the exposure artifacts found in traditional stitching methods. Here we show a comparison of 4DiM v.s. homography with gamma adjustment, given six input images:
       </p>
+      <br>
+      <div class="input-output-target">
+        <img src="./new_samples/pano/cond.gif" alt="" />
+        <!-- <span class="arrow">⟶</span> -->
+        <img src="./new_samples/pano/hyp.gif" alt="" />
+        <img src="./new_samples/pano/tgt.gif" alt="" />
+      </div>
+      <div class="image-captions caption">
+        <div>Input</div>
+        <div>Output</div>
+        <div>Homography stitched</div>
+      </div>
+    </div>
+
+    <br>
+    <br>
+
+    <div class="container center">
+      <p>One particular application of video-to-video translation is to <u>adjust camera orientations</u>. Here we simultaneously generate increasingly larger angle changes to a side-view camera to make it look to the front.
+      </p>
+      <br>
+      <div class="input-output-target">
+        <img src="./new_samples/sv_reangle/cond.gif" alt="">
+        <img src="./new_samples/sv_reangle/hyp.gif" alt="" />
+        <img src="./new_samples/sv_reangle/tgt.gif" alt="" />
+      </div>
+      <div class="image-captions caption">
+        <div>Input</div>
+        <div>Output</div>
+        <div>Homography warped input</div>
+      </div>
     </div>
 
     <br />
+    <br />
+
+    <div class="section-header center" id="rebuttal">
+      <h2>
+        Other comparisons
+      </h2>
+    </div>
+
+    <br>
+
     <div class="container center">
+      <p>
+        <b>Latent diffusion</b>: at the time of writing, 4DiM was developed on a cascaded pixel space pipeline, but our techniques fully translate to LDMs. Below we show 512x512 results from a <i>latent</i> 4DiM model:
+      </p>
+    </div>
+    <br>
+    <div class="center">
       <div class="carousel">
-        <span class="carousel-group-span">4DiM</span>
-        <span>&#x2022;</span>
-        <span class="carousel-group-span">PNVS</span>
-        <span>&#x2022;</span>
-        <span class="carousel-group-span">MotionCtrl</span>
-        <br />
-        <br />
-        <div class="carousel-element center"></div>
+        <span class="carousel-arrow left" onclick="moveCarousel(this.parentNode, -1)">&#9001;</span>
+        <div class="carousel-elements" onscroll="scrollCarousel(this);">
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_1.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_1.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_2.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_2.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_3.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_3.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_4.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_4.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_5.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_5.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_6.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_6.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_7.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_7.gif " alt="" />
+            </div>
+          </div>
+          <div class="carousel-element">
+            <div class="input-output hr">
+              <img src="./rebuttal_samples/ldm/input_8.gif" alt="" />
+              <span class="arrow">⟶</span>
+              <img src="./rebuttal_samples/ldm/output_8.gif " alt="" />
+            </div>
+          </div>
+        </div>
+        <span class="carousel-arrow right" onclick="moveCarousel(this.parentNode, 1)">&#9002;</span>
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div class="container center">
+      <p>
+        <b>Co-training with video</b>: we include some side-by-side comparisons of 4DiM v.s. 4DiM trained without large-scale unposed video on LLFF to show the impact on OOD generalization:
+      </p>
+      <br>
+      <div class="image-captions caption">
+        <div>Input</div>
+        <div>4DiM (no video)</div>
+        <div>4DiM</div>
+      </div>
+      <div class="input-output-target">
+        <img src="./rebuttal_samples/novid/input_1.gif" alt="">
+        <img src="./rebuttal_samples/novid/output_1.gif" alt="" />
+        <img src="./rebuttal_samples/novid/4dim_1.gif" alt="" />
+      </div>
+      <div class="input-output-target">
+        <img src="./rebuttal_samples/novid/input_2.gif" alt="">
+        <img src="./rebuttal_samples/novid/output_2.gif" alt="" />
+        <img src="./rebuttal_samples/novid/4dim_3.gif" alt="" />
+      </div>
+      <div class="input-output-target">
+        <img src="./rebuttal_samples/novid/input_3.gif" alt="">
+        <img src="./rebuttal_samples/novid/output_3.gif" alt="" />
+        <img src="./rebuttal_samples/novid/4dim_2.gif" alt="" />
+      </div>
+      <div class="input-output-target">
+        <img src="./rebuttal_samples/novid/input_4.gif" alt="">
+        <img src="./rebuttal_samples/novid/output_4.gif" alt="" />
+        <img src="./rebuttal_samples/novid/4dim_4.gif" alt="" />
       </div>
     </div>
 
@@ -587,112 +952,80 @@
     <br />
     <br />
 
-    <div class="container">
-      <p>
-        4DiM is more robust to images that are very different to those it was trained on. Here we
-        show that it is possible to combine 4DiM with text-to-image models to achieve
-        <b style="text-decoration: underline">text-to-3D</b>:
-      </p>
-    </div>
-
-    <br />
     <div class="container center">
-      <div class="carousel">
-        <div class="carousel-element center"></div>
+      <p>
+        <b>Comparison other frame interpolation methods</b>: we include some side-by-side comparisons of 4DiM v.s. various video interpolation methods from prior work on the Davis dataset (<a href="https://film-net.github.io/">FILM</a>, <a href="https://github.com/hzwer/ECCV2022-RIFE?tab=readme-ov-file">RIFE</a>, <a href="https://github.com/danier97/LDMVFI">LDMVFI</a>):
+      </p>
+      <br>
+    </div>
+    <div class="center">
+      <div class="image-captions caption interp-comparisons">
+        <div>FILM</div>
+        <div>RIFE</div>
+        <div>LDMVFI</div>
+        <div>4DiM</div>
       </div>
-    </div>
-
-    <br />
-    <br />
-    <hr />
-    <br /> -->
-
-    <!-- <div class="container center">
-      <h2>Technical innovations</h2>
-    </div>
-
-    <br />
-
-    <div class="container center">
-      <p>
-        One of the biggest challenges in novel view synthesis for <i>scenes</i> is the low
-        availability and diversity of 3D scene data with camera poses. The largest-scale data
-        available, such as <a href="https://google.github.io/realestate10k/">RealEstate10K</a>,
-        relies on structure-from-motion methods to obtain camera poses, so the poses in the data
-        contain errors and do not have a meaningful scale.
-      </p>
-      <p>
-        To get around this, 4DiM is first designed to leverage <i>unposed</i> video data. This greatly improves generalization. We also deal with the scale ambiguity problem. We calibrate RealEstate10K camera poses to obtain camera positions in meters. This is done using
-        <a href="https://diffusion-vision.github.io/dmd/">DMD</a>, a diffusion model for metric
-        depth. Using 3D data now at metric scale, 4DiM can control the camera <i>precisely</i> in
-        the single-image case.
-      </p>
-      <br />
-      <div style="input-output-target">
-        <img src="./samples/cal_ablation/cal.gif" alt="" />
-        <img src="./samples/cal_ablation/uncal.gif" alt="" />
-        <img src="./samples/cal_ablation/tgt.gif" alt="" />
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_1.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_1.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_1.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_1.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_2.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_2.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_2.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_2.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_6.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_6.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_6.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_6.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_3.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_3.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_3.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_3.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_4.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_4.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_4.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_4.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_5.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_5.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_5.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_5.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_11.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_11.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_11.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_11.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_6.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_6.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_6.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_6.gif" alt="" />
+      </div>
+      <div class="input-output-target interp">
+        <img src="./rebuttal_samples/interp/film_8.gif" alt="">
+        <img src="./rebuttal_samples/interp/rife_8.gif" alt="" />
+        <img src="./rebuttal_samples/interp/ldmvfi_8.gif" alt="" />
+        <img src="./rebuttal_samples/interp/4dim_8.gif" alt="" />
       </div>
       <br>
       <br>
-      <span class="caption">
-      <span style="font-weight: bold">Left: 4DiM</span>. Middle: 4DiM trained on uncalibrated data. Right: real data.
-      </span>
-    </div> -->
-
-    <!-- <br />
-    <br />
-    <hr />
-    <br /> -->
-
-    <div class="container center">
-      <h2>Thank you!</h2>
-      <p>Please see our <a href="http://arxiv.org/abs/2407.07860">paper</a> for more details. We include a few more samples below.</p>
-      <br />
+      <!-- <span class="caption">
+      Left: input video. Middle: 4DiM output. Right: homography-warped input video.
+      </span> -->
     </div>
 
-    <div class="banner center">
-      <!-- <div class="main-video-placeholder center">TODO(all): video</div> -->
-      <img src="./samples/more_llff/llff_1.gif" alt="">
-      <img src="./samples/more_llff/llff_2.gif" alt="">
-      <img src="./samples/more_llff/llff_3.gif" alt="">
-      <img src="./samples/more_llff/llff_4.gif" alt="">
-      <img src="./samples/more_llff/llff_5.gif" alt="">
-      <img src="./samples/more_llff/llff_6.gif" alt="">
-      <img src="./samples/more_llff/llff_7.gif" alt="">
-      <img src="./samples/more_llff/llff_8.gif" alt="">
-      <img src="./samples/more_llff/llff_9.gif" alt="">
-      <img src="./samples/more_llff/llff_10.gif" alt="">
-      <br>
-      <br>
-      <span class="caption">
-      More 4DiM samples from the <a href="https://bmild.github.io/llff/">Local Light Field Fusion</a> dataset produced with a single input image.
-      </span>
-    </div>
-
-    <br />
-    <br />
-    <br />
-
-    <div class="banner center">
-      <img src="./samples/re10k/re10k_1.gif" alt="">
-      <img src="./samples/re10k/re10k_2.gif" alt="">
-      <img src="./samples/re10k/re10k_3.gif" alt="">
-      <img src="./samples/re10k/re10k_4.gif" alt="">
-      <img src="./samples/re10k/re10k_5.gif" alt="">
-      <img src="./samples/re10k/re10k_6.gif" alt="">
-      <img src="./samples/re10k/re10k_7.gif" alt="">
-      <img src="./samples/re10k/re10k_8.gif" alt="">
-      <img src="./samples/re10k/re10k_9.gif" alt="">
-      <img src="./samples/re10k/re10k_10.gif" alt="">
-      <br>
-      <br>
-      <span class="caption">
-      4DiM samples from the <a href="https://google.github.io/realestate10k/">RealEstate10K</a> dataset produced with a single input image.
-      </span>
-    </div>
-
-    <br />
     <br />
     <br />
 

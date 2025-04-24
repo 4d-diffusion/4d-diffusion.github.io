@@ -1,23 +1,23 @@
 html,body {
   margin: 0;
   padding: 0;
-  background-color: #000;
+  background-color: #fff;
 }
 
-h1,h2,h3,h4,h5,h6,p,span,b,i,hr {
+h1,h2,h3,h4,h5,h6,p,span,b,i,hr,div {
   font-family: 'Google Sans', sans-serif;
-  color: #fff;
+  color: #333;
 }
 h1,h2,h3,h4,h5,h6 {
   font-weight: normal;
 }
 a {
-  color: #fff;
+  color: #333;
 }
 
 .caption {
   font-size: 0.9rem;
-  color: #ccc;
+  color: #333;
 }
 
 .arxiv-button {
@@ -49,6 +49,12 @@ a {
   max-width: 50rem;
 }
 
+.section-header {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: #f5f5f5;
+}
+
 .center {
   text-align: center;
 }
@@ -72,10 +78,12 @@ a {
 .carousel {
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .carousel span {
-  color: #ccc;
+  color: #777;
 }
 .carousel span.active {
   color: #fff;
@@ -84,6 +92,8 @@ a {
 .carousel-elements {
   overflow: scroll;
   display: flex;
+  scroll-behavior: smooth;
+  cursor: url("swipe.svg"), auto;
 }
 
 .carousel-element {
@@ -95,7 +105,7 @@ a {
   /* background-color: #aaa; */
   /* min-width: round(33vw, 1px); */
   flex-shrink: 0;
-  margin-right: round(8rem, 1px);
+  /* margin-right: round(8rem, 1px); */
 }
 
 .carousel-group-span:hover {
@@ -104,9 +114,23 @@ a {
 
 .carousel-arrow {
   font-size: 4rem;
-  position: absolute;
-  margin-top: 5rem;
-  overflow: hidden;
+  // position: absolute;
+  // margin-top: 5rem;
+  // overflow: hidden;
+  user-select: none;
+  color: #555;
+  width: 4rem;
+}
+.carousel-arrow.left {
+  margin-right: 1rem;
+  margin-left: -1rem;
+}
+.carousel-arrow.right {
+  margin-right: -1rem;
+  margin-left: 1rem;
+}
+.carousel-arrow:hover {
+  cursor: pointer;
 }
 .carousel-arrow.left {
   float: left;
@@ -122,6 +146,33 @@ a {
   flex-direction: row;
   justify-content: center;
 }
+
+.image-captions {
+  display: flex;
+  flex-direction: row;
+}
+.image-captions > div {
+  width: 33%;
+}
+
+.interp-comparisons {
+  justify-content: center;
+}
+.image-captions.interp-comparisons > div {
+  width: 256px !important;
+}
+
+img, video {
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.hr video,.hr img {
+  /* Do not show videos above their natural resolution */
+  max-width: 512px !important;
+  width: 512px;
+}
 .input-output video,.input-output img {
   /* Do not show videos above their natural resolution */
   max-width: 256px;
@@ -129,11 +180,14 @@ a {
 }
 .input-output .arrow {
   font-size: 2rem;
-  margin: auto 1rem;
+  margin: auto 0rem;
 }
 
 .input-output-target img,.input-output-target video {
   max-width: min(256px, 28vw);
+}
+.input-output-target.interp > img {
+  max-width: min(256px, 23vw) !important;
 }
 .input-output-target:last-child {
   margin-right: 0;

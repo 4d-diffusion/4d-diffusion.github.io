@@ -21,8 +21,6 @@ const getCarouselWindows = (carouselEl, includeIllusory = false) => {
 
 // This is only called once, when the DOM is ready.
 const addCarouselLoopIllusion = carouselEl => {
-  console.log('addCarouselLoopIllusion');
-
   const carouselWindowEl =
       carouselEl.getElementsByClassName('carousel-elements')[0];
   const windows = getCarouselWindows(carouselEl, false);
@@ -39,7 +37,6 @@ const addCarouselLoopIllusion = carouselEl => {
     remainderLeftX -= getWidthIncludingMargin(w);
     // Modulus in js doesn't work with negative numbers.
     i = i === 0 ? windows.length - 1 : i - 1;
-    console.log('addCarouselLoopIllusion: added left');
   }
 
   let remainderRightX = window.innerWidth / 2;
@@ -50,7 +47,6 @@ const addCarouselLoopIllusion = carouselEl => {
     carouselWindowEl.appendChild(w);
     remainderRightX -= getWidthIncludingMargin(w);
     i = (i + 1) % windows.length;
-    console.log('addCarouselLoopIllusion: added right');
   }
 };
 
@@ -59,7 +55,6 @@ const getCarouselXs = carouselEl => {
   const allWindows = getCarouselWindows(carouselEl, true);
   const finalOffset =
       (window.innerWidth - allWindows[1].clientWidth) / 2;
-  console.log('getCarouselXs: finalOffset', finalOffset);
 
   const widths = allWindows.map(getWidthIncludingMargin);
   const xs = [];
@@ -72,16 +67,9 @@ const getCarouselXs = carouselEl => {
 };
 
 
-// Return the index of the (non-illusory) current window.
-const getCurrentCarouselWindow = carouselEl => {
-  const carouselWindowEl =
-      carouselEl.getElementsByClassName('carousel-elements')[0];
-
-  let scrollLeft = carouselWindowEl.scrollLeft;
-  const xs = getCarouselXs(carouselEl);
-  const distances = xs.map(x => Math.abs(x - scrollLeft));
-  let index = distances.indexOf(Math.min(...distances));
-
+// Return the index of the (non-illusory) window given its (illusory-inclusive)
+// index.
+const getCarouselWindowByIndex = (carouselEl, index) => {
   const allWindows = getCarouselWindows(carouselEl, true);
   let nLeftIllusory = 0;
   let i = 0;
@@ -97,7 +85,6 @@ const getCurrentCarouselWindow = carouselEl => {
   }
   const nReal = allWindows.length - nLeftIllusory - nRightIllusory;
 
-  // TODO(watsondaniel): handle negative differences?
   if (index < nLeftIllusory) {
     index = index + (nReal - nLeftIllusory);
   }
@@ -108,58 +95,36 @@ const getCurrentCarouselWindow = carouselEl => {
     index = index - nLeftIllusory;
   }
 
+  const xs = getCarouselXs(carouselEl);
   const x = xs[nLeftIllusory + index];
   return {index, x};
 };
 
 
-// const loadCarouselWindowMedia = (windowEl, groupStr) => {
-//   const src = windowEl.dataset[groupStr];
-//   const srcEl = windowEl.getElementsByClassName('dynamic')[0];
-//   if (srcEl !== null && srcEl !== undefined &&
-//       srcEl.getAttribute('src') !== src) {
-//     srcEl.setAttribute('src', src);
-//   }
-//   if (srcEl.parentNode.tagName === 'VIDEO') {
-//     srcEl.parentNode.load();
-//     srcEl.parentNode.play();
-//   }
-// };
+// Return the index of the (non-illusory) current window.
+const getCurrentCarouselWindowIndex = carouselEl => {
+  const carouselWindowEl =
+      carouselEl.getElementsByClassName('carousel-elements')[0];
+  let scrollLeft = carouselWindowEl.scrollLeft;
+  const xs = getCarouselXs(carouselEl);
+  const distances = xs.map(x => Math.abs(x - scrollLeft));
+  let index = distances.indexOf(Math.min(...distances));
+  return index;
+};
+
+const getCurrentCarouselWindow = carouselEl => {
+  return getCarouselWindowByIndex(carouselEl, getCurrentCarouselWindowIndex(carouselEl));
+};
 
 
-// const activateCarousel = (carouselEl, windowIndex, groupStr) => {
-//   // TODO(watsondaniel): check if this is ok
-//   const windows = getCarouselWindows(carouselEl);
+// === Global variables and functions accessed by the HTML. === //
 
-//   // First adjust the scrollLeft to the specified or closest window.
-//   if (windowIndex === null) {
-//     windowIndex = getCurrentCarouselWindow(carouselEl).index;
-//   } else {
-//     windowIndex++;
-//   }
-//   const carouselWindowEl =
-//       carouselEl.getElementsByClassName('carousel-elements')[0];
-//   carouselWindowEl.scrollLeft = getCarouselXs(carouselEl)[windowIndex];
-
-//   // TODO(watsondaniel): don't return; find current groupStr instead!
-//   if (groupStr === null) {
-//     return;
-//   }
-//   loadCarouselWindowMedia(windows[windowIndex], groupStr);
-//   loadCarouselWindowMedia(
-//       windows[(windowIndex + 1) % windows.length], groupStr);
-//   loadCarouselWindowMedia(
-//       windows[(windowIndex - 1) % windows.length], groupStr);
-// };
-
-
-// === Global functions accessed by the HTML. === //
-
-// TODO(watsondaniel): can we avoid the global variables?
 let scrollTimer = null;
 let isAdjusting = false;
 
 function scrollCarousel(carouselWindowsEl) {
+  // DISABLED
+  return;
   const carouselEl = carouselWindowsEl.parentNode;
   if (scrollTimer !== null) {
     clearTimeout(scrollTimer);
@@ -179,42 +144,14 @@ function scrollCarousel(carouselWindowsEl) {
   }, 300);
 }
 
-function moveCarousel(carouselEl, increment) {
-  // const n = getCarouselWindows(carouselEl, false).length;
-  // const i = getCurrentCarouselWindow(carouselEl).index;
-  // activateCarousel(carouselEl, (i + increment) % n, null);
+function moveCarousel(carouselEl, direction) {
+  const carouselElements = carouselEl.getElementsByClassName('carousel-element');
+  const numElements = carouselElements.length;
+  const curIndex = getCurrentCarouselWindowIndex(carouselEl);
+  const newIndex = (curIndex + direction) % numElements;
+  const carouselWindowEl = carouselEl.getElementsByClassName('carousel-elements')[0];
+  carouselWindowEl.scrollLeft = getCarouselWindowByIndex(carouselEl, newIndex).x;
 }
-
-// const moveClosestCarousel = increment => {
-//   const carousels = [].slice.call(document.getElementsByClassName('carousel'));
-//   const hs = carousels.map(el => el.clientHeight);
-//   // NOTE: these are already offset by window.scrollY. Adding it back will make
-//   // the result constant.
-//   const yStart = carousels.map(el => el.getBoundingClientRect().top);
-//   const yEnd = yStart.map((y, i) => y + hs[i]);
-//   const yMax = window.innerHeight;
-
-//   const candidates = [];
-//   for (let i = 0; i < carousels.length; i++) {
-//     if (yStart[i] < yMax && yEnd[i] > 0) {
-//       candidates.push(i);
-//     }
-//   }
-
-//   const candidateCoverage = candidates.map(
-//       i => ((Math.min(yMax, yEnd[i]) - Math.max(0, yStart[i])) / hs[i]));
-//   const index = candidateCoverage.indexOf(Math.max(...candidateCoverage));
-//   moveCarousel(carousels[index], increment);
-// };
-
-// function changeCarouselGroup(toggleEl, groupStr) {
-//   const carouselEl = toggleEl.parentNode.parentNode;
-//   for (anyToggleEl of toggleEl.parentNode.children) {
-//     anyToggleEl.classList.remove('active');
-//   }
-//   toggleEl.classList.add('active');
-//   activateCarousel(carouselEl, null, groupStr);
-// }
 
 
 // === Document ready. === //
@@ -235,8 +172,19 @@ function moveCarousel(carouselEl, increment) {
 
   // Activate all the carousels.
   for (let carouselEl of document.getElementsByClassName('carousel')) {
-    addCarouselLoopIllusion(carouselEl);
-    // const groupStr = Object.keys(getCarouselWindows(carouselEl)[0].dataset)[0];
-    // activateCarousel(carouselEl, 0, groupStr);
+    // addCarouselLoopIllusion(carouselEl);
+
+    // Control where they start.
+    setTimeout(() => {
+      const carouselWindowsEl = carouselEl.getElementsByClassName('carousel-elements')[0];
+      let i = 0;
+      for (let carouselWindow of carouselWindowsEl.children) {
+        if (carouselWindow.classList.contains('favorite')) {
+          break;
+        }
+        i++;
+      }
+      carouselWindowsEl.scrollLeft = getCarouselWindowByIndex(carouselEl, i).x;
+    }, 2000);
   }
 })();
